@@ -41,7 +41,7 @@ namespace XIVLauncher.Game
         private const string USER_AGENT_MAC = "macSQEXAuthor/2.0.0(MacOSX; ja-jp)";
         private readonly string _userAgent = GenerateUserAgent();
 
-        private const int STEAM_APP_ID = 39210;
+        public const int STEAM_APP_ID = 39210;
 
         private readonly HttpClient _client;
 
