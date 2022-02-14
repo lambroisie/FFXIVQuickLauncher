@@ -35,12 +35,12 @@ namespace XIVLauncher.Game
             };
             _client = new HttpClient(handler);
         }
-        private static readonly bool MacAuth = True;
+        private static readonly bool MacAuth = true;
         // The user agent for frontier pages. {0} has to be replaced by a unique computer id and its checksum
         private const string USER_AGENT_TEMPLATE = "SQEXAuthor/2.0.0(Windows 6.2; ja-jp; {0})";
         private const string USER_AGENT_MAC = "macSQEXAuthor/2.0.0(MacOSX; ja-jp)";
         private readonly string _userAgent = GenerateUserAgent();
-        private readonly string _userAgentPatch = MacAuth ? "FFXIV-MAC PATCH CLIENT" : "FFXIV PATCH CLIENT";
+        private readonly string _userAgentPatch = FFXIV-MAC PATCH CLIENT";
         public const int STEAM_APP_ID = 39210;
 
         private readonly HttpClient _client;
