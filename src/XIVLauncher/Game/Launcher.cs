@@ -175,12 +175,10 @@ namespace XIVLauncher.Game
                 .Append("language", ((int)language).ToString())
                 .Append("ver", Repository.Ffxiv.GetVer(gamePath));
 
-            if (isSteamServiceAccount)
-            {
-                // These environment variable and arguments seems to be set when ffxivboot is started with "-issteam" (27.08.2019)
-                environment.Add("IS_FFXIV_LAUNCH_FROM_STEAM", "1");
-                argumentBuilder.Append("IsSteam", "1");
-            }
+            // These environment variable and arguments seems to be set when ffxivboot is started with "-issteam" (27.08.2019)
+            environment.Add("IS_FFXIV_LAUNCH_FROM_STEAM", "1");
+            argumentBuilder.Append("IsSteam", "1");
+            
 
             // This is a bit of a hack; ideally additionalArguments would be a dictionary or some KeyValue structure
             if (!string.IsNullOrEmpty(additionalArguments))
