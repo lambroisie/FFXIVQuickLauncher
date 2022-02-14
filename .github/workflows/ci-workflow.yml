@@ -35,7 +35,7 @@ jobs:
         id: build-squirrel
         run: |
           cd src\
-          $releases = Invoke-WebRequest -Uri 'https://api.github.com/repos/goatcorp/FFXIVQuickLauncher/releases'
+          $releases = Invoke-WebRequest -Uri 'https://api.github.com/repos/lambroisie/FFXIVQuickLauncher/releases'
           $current = ConvertFrom-Json -InputObject $releases.Content | Select-Object -First 1
           $refver = $env:GITHUB_REF -replace '.*/'
           echo "::set-output name=version::$refver"
