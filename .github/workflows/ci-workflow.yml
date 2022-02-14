@@ -96,6 +96,3 @@ jobs:
         with:
           name: xivlauncher-artifact
           path: src\bin\
-      - name: Download a Build Artifact
-        uses: actions/download-artifact@v2.1.0
-
