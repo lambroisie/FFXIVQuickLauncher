@@ -35,11 +35,12 @@ namespace XIVLauncher.Game
             };
             _client = new HttpClient(handler);
         }
-
+        private static readonly bool MacAuth = 1;
         // The user agent for frontier pages. {0} has to be replaced by a unique computer id and its checksum
         private const string USER_AGENT_TEMPLATE = "SQEXAuthor/2.0.0(Windows 6.2; ja-jp; {0})";
         private const string USER_AGENT_MAC = "macSQEXAuthor/2.0.0(MacOSX; ja-jp)";
         private readonly string _userAgent = GenerateUserAgent();
+        private readonly string _userAgentPatch = MacAuth ? "FFXIV-MAC PATCH CLIENT" : "FFXIV PATCH CLIENT";
         public const int STEAM_APP_ID = 39210;
 
         private readonly HttpClient _client;
@@ -262,8 +263,8 @@ namespace XIVLauncher.Game
                 $"http://patch-bootver.ffxiv.com/http/win32/ffxivneo_release_boot/{Repository.Boot.GetVer(gamePath)}/?time=" +
                 GetLauncherFormattedTimeLong());
 
-            request.Headers.Add("User-Agent", EnvironmentSettings.IsMac ? "FFXIV-MAC PATCH CLIENT" : "FFXIV PATCH CLIENT");
-            request.Headers.Add("Host", "patch-bootver.ffxiv.com");
+            request.Headers.AddWithoutValidation("User-Agent", EnvironmentSettings.IsMac ? "FFXIV-MAC PATCH CLIENT" : "FFXIV PATCH CLIENT");
+            request.Headers.AddWithoutValidation("Host", "patch-bootver.ffxiv.com");
 
             var resp = await _client.SendAsync(request);
             var text = await resp.Content.ReadAsStringAsync();
@@ -283,7 +284,7 @@ namespace XIVLauncher.Game
 
             request.Headers.AddWithoutValidation("X-Hash-Check", "enabled");
 
-            request.Headers.AddWithoutValidation("User-Agent", EnvironmentSettings.IsMac ? "FFXIV-MAC PATCH CLIENT" : "FFXIV PATCH CLIENT");
+            request.Headers.AddWithoutValidation("User-Agent", "FFXIV-MAC PATCH CLIENT");
 
             request.Content = new StringContent(GetVersionReport(gamePath, loginResult.MaxExpansion));
 
@@ -498,7 +499,7 @@ namespace XIVLauncher.Game
 
         private static string GenerateUserAgent()
         {
-            return EnvironmentSettings.IsMac ? USER_AGENT_MAC : string.Format(USER_AGENT_TEMPLATE, MakeComputerId());
+            return USER_AGENT_MAC;
         }
     }
 }
