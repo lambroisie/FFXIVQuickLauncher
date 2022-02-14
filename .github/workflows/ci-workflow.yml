@@ -58,7 +58,7 @@ jobs:
         with:
           files: src\Releases\**
           name: Release ${{ steps.build-squirrel.outputs.version }}
-          tag_name: "$name"
+          tag_name: $name
           body_path:  RELEASE.md
           prerelease: true
 
