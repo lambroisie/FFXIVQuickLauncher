@@ -37,7 +37,7 @@ jobs:
           $current = ConvertFrom-Json -InputObject $releases.Content | Select-Object -First 1
           $refver = $env:GITHUB_REF -replace '.*/'
           echo "::set-output name=version::$refver"
-          nuget pack .\XIVLauncher.nuspec -properties version=6.1.20
+          nuget pack .\XIVLauncher.nuspec -properties version=$refver
           mkdir Releases
           $release_file = $current.assets | Where-Object -Property name -Value RELEASES -EQ
           Invoke-WebRequest -Uri $release_file.browser_download_url -OutFile .\Releases\RELEASES
