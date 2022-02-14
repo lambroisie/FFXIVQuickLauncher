@@ -12,6 +12,7 @@ namespace XIVLauncher
         public static bool IsWine => IsLinux || IsMac;
         public static bool IsLinux => CheckEnvBool("XL_WINEONLINUX");
         public static bool IsMac => GetProcAddress(GetModuleHandle("ntdll.dll"), "wine_get_version") != IntPtr.Zero;
+        public static bool FoundWineExports => GetProcAddress(GetModuleHandle("ntdll.dll"), "wine_get_version") != IntPtr.Zero;
         public static bool IsDisableUpdates => CheckEnvBool("XL_NOAUTOUPDATE");
         public static bool IsPreRelease => CheckEnvBool("XL_PRERELEASE");
         public static bool IsNoRunas => CheckEnvBool("XL_NO_RUNAS");
