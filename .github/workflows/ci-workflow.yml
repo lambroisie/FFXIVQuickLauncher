@@ -35,7 +35,7 @@ jobs:
           cd src\
           $releases = Invoke-WebRequest -Uri 'https://api.github.com/repos/lambroisie/FFXIVQuickLauncher/releases'
           $current = ConvertFrom-Json -InputObject $releases.Content | Select-Object -First 1
-          $refver = '6.1.21'
+          $refver = '6.1.22'
           echo "::set-output name=version::$refver"
           nuget pack .\XIVLauncher.nuspec -properties version=$refver
           mkdir Releases
@@ -58,7 +58,7 @@ jobs:
         with:
           files: src\Releases\**
           name: Release ${{ steps.build-squirrel.outputs.version }}
-          tag_name: $name
+          tag_name: ${{ steps.build-squirrel.outputs.version }}
           body_path:  RELEASE.md
           prerelease: true
 
