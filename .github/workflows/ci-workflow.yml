@@ -35,7 +35,7 @@ jobs:
           cd src\
           $releases = Invoke-WebRequest -Uri 'https://api.github.com/repos/lambroisie/FFXIVQuickLauncher/releases'
           $current = ConvertFrom-Json -InputObject $releases.Content | Select-Object -First 1
-          $refver = '6.1.24'
+          $refver = '6.1.23'
           echo "::set-output name=version::$refver"
           nuget pack .\XIVLauncher.nuspec -properties version=$refver
           mkdir Releases
