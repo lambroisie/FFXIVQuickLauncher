@@ -35,7 +35,7 @@ namespace XIVLauncher.Game
             };
             _client = new HttpClient(handler);
         }
-        private static readonly bool MacAuth = EnvironmentSettings.FoundWineExports;
+        private static readonly bool MacAuth = true;
         // The user agent for frontier pages. {0} has to be replaced by a unique computer id and its checksum
         private const string USER_AGENT_TEMPLATE = "SQEXAuthor/2.0.0(Windows 6.2; ja-jp; {0})";
         private const string USER_AGENT_MAC = "macSQEXAuthor/2.0.0(MacOSX; ja-jp)";
