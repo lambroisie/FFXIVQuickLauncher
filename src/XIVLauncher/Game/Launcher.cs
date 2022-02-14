@@ -40,7 +40,6 @@ namespace XIVLauncher.Game
         private const string USER_AGENT_TEMPLATE = "SQEXAuthor/2.0.0(Windows 6.2; ja-jp; {0})";
         private const string USER_AGENT_MAC = "macSQEXAuthor/2.0.0(MacOSX; ja-jp)";
         private readonly string _userAgent = GenerateUserAgent();
-
         public const int STEAM_APP_ID = 39210;
 
         private readonly HttpClient _client;
@@ -263,13 +262,8 @@ namespace XIVLauncher.Game
                 $"http://patch-bootver.ffxiv.com/http/win32/ffxivneo_release_boot/{Repository.Boot.GetVer(gamePath)}/?time=" +
                 GetLauncherFormattedTimeLong());
 
-<<<<<<< HEAD
-            request.Headers.AddWithoutValidation("User-Agent", EnvironmentSettings.IsMac ? "FFXIV-MAC PATCH CLIENT" : "FFXIV PATCH CLIENT");
-            request.Headers.AddWithoutValidation("Host", "patch-bootver.ffxiv.com");
-=======
             request.Headers.Add("User-Agent", EnvironmentSettings.IsMac ? "FFXIV-MAC PATCH CLIENT" : "FFXIV PATCH CLIENT");
             request.Headers.Add("Host", "patch-bootver.ffxiv.com");
->>>>>>> 209b3d1 (enable authentification as mac client)
 
             var resp = await _client.SendAsync(request);
             var text = await resp.Content.ReadAsStringAsync();
@@ -287,17 +281,9 @@ namespace XIVLauncher.Game
             var request = new HttpRequestMessage(HttpMethod.Post,
                 $"https://patch-gamever.ffxiv.com/http/win32/ffxivneo_release_game/{Repository.Ffxiv.GetVer(gamePath)}/{loginResult.SessionId}");
 
-<<<<<<< HEAD
             request.Headers.AddWithoutValidation("X-Hash-Check", "enabled");
 
             request.Headers.AddWithoutValidation("User-Agent", EnvironmentSettings.IsMac ? "FFXIV-MAC PATCH CLIENT" : "FFXIV PATCH CLIENT");
-=======
-            request.Headers.Add("X-Hash-Check", "enabled");
-            request.Headers.Add("User-Agent", EnvironmentSettings.IsMac ? "FFXIV-MAC PATCH CLIENT" : "FFXIV PATCH CLIENT");
-            //client.Headers.Add("Referer",
-            //    $"https://ffxiv-login.square-enix.com/oauth/ffxivarr/login/top?lng=en&rgn={loginResult.Region}");
-            request.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
->>>>>>> 209b3d1 (enable authentification as mac client)
 
             request.Content = new StringContent(GetVersionReport(gamePath, loginResult.MaxExpansion));
 
